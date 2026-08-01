@@ -1,1 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>❤️ Our Love Gallery ❤️</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+background:linear-gradient(135deg,#ff758c,#ff7eb3);
+font-family:Arial,sans-serif;
+overflow-x:hidden;
+}
+
+h1{
+text-align:center;
+color:white;
+padding:25px;
+font-size:35px;
+text-shadow:0 0 10px red;
+}
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:12px;
+padding:15px;
+}
+
+.gallery img{
+width:100%;
+height:220px;
+object-fit:cover;
+border-radius:20px;
+box-shadow:0 0 20px white;
+animation:zoom 3s infinite alternate;
+}
+
+@keyframes zoom{
+from{
+transform:scale(1);
+}
+to{
+transform:scale(1.05);
+}
+}
+
+
+/* Hearts */
+.heart{
+position:fixed;
+bottom:-20px;
+color:red;
+font-size:25px;
+animation:fly 6s linear infinite;
+}
+
+@keyframes fly{
+0%{
+transform:translateY(0);
+opacity:1;
+}
+100%{
+transform:translateY(-110vh);
+opacity:0;
+}
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>❤️ Our Beautiful Memories ❤️</h1>
+
+<div class="gallery" id="gallery"></div>
+
+
+<script>
+
+// 100 Photos Auto Add
+
+let gallery=document.getElementById("gallery");
+
+for(let i=1;i<=100;i++){
+
+let img=document.createElement("img");
+
+img.src="IMG-20260413-WA00"+(1+i)+".jpg";
+
+img.onerror=function(){
+this.style.display="none";
+};
+
+gallery.appendChild(img);
+
+}
+
+
+// Falling Hearts
+
+function createHeart(){
+
+let heart=document.createElement("div");
+
+heart.className="heart";
+heart.innerHTML="❤️";
+
+heart.style.left=Math.random()*100+"%";
+heart.style.fontSize=(20+Math.random()*30)+"px";
+heart.style.animationDuration=(3+Math.random()*5)+"s";
+
+document.body.appendChild(heart);
+
+
+setTimeout(()=>{
+heart.remove();
+},8000);
+
+}
+
+setInterval(createHeart,300);
+
+
+// Auto Scroll
+
+let speed=5;
+
+function autoScroll(){
+
+window.scrollBy(4,speed);
+
+if(window.innerHeight+window.scrollY>=document.body.offsetHeight){
+
+window.scrollTo(0,0);
+
+}
+
+}
+
+setInterval(autoScroll,20);
+
+</script>
+
+
+</body>
+</html>
